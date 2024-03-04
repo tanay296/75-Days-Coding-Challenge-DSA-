@@ -8,4 +8,69 @@ class Solution:
             for j in range (i+1,n):
                 if nums[i] + nums[j]==target:
                     return[i,j]
-        reutn()
+        return()
+
+# Valid Parentheses
+class Solution:
+    def isValid(self, s: str) -> bool:
+        opcl = dict(("()","[]","{}"))
+        stack=[]
+
+        for idx in s:
+            if idx in '(,[,{':
+                stack.append(idx)
+            elif stack==0 or idx!= opcl[stack.pop()]:
+                return False
+        
+        return len(stack)==0
+
+# Valid Anagram
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        
+        sorted_s = sorted(s)
+        sorted_t = sorted(t)
+
+        return sorted_s == sorted_t
+
+# Binary Search
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l, r = 0, len(nums)-1
+
+        while l<=r:
+
+            m = l+((r-l)//2)
+
+            if nums[m]<target:
+
+                l = m+1
+            
+            elif nums[m]>target:
+
+                r = m-1
+
+            else:
+                
+                return m
+            
+        return -1
+
+# Best Time to Buy and Sell Stock
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        l = 0
+        r = 1
+        maxP = 0
+
+        while r < len(prices):
+            
+            if prices[l]<prices[r]:
+                profit = prices[r]-prices[l]
+                maxP=max(maxP, profit)
+
+            else:
+                l =r
+            r = r+1
+
+        return maxP
